@@ -13,7 +13,7 @@ class ModelBase(ABC):
         self.tokenizer: AutoTokenizer = self._load_tokenizer(model_name_or_path)
         
         self.tokenize_instructions_fn = self._get_tokenize_instructions_fn()
-        self.eoi_toks = self._get_eoi_toks()
+        self.eoi_toks = self._get_eoi_toks() #eoi= end of instruction token?
         self.refusal_toks = self._get_refusal_toks()
 
         self.model_block_modules = self._get_model_block_modules()
