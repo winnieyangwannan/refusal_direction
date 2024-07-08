@@ -19,6 +19,10 @@ class Config:
     refusal_eval_methodologies: Tuple[str] = ("substring_matching",)
     ce_loss_batch_size: int = 2
     ce_loss_n_batches: int = 2048
+    intervention: str = 'ablation'
+    source_layer: int = 14
+    target_layer: int = None
+    batch_size: int=1
 
     def artifact_path(self) -> str:
         return os.path.join(os.path.dirname(os.path.realpath(__file__)), "runs_activation_pca", self.model_alias)

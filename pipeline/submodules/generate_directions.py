@@ -26,7 +26,8 @@ def get_mean_activations(model, tokenizer, instructions, tokenize_instructions_f
     # we store the mean activations in high-precision to avoid numerical issues
     mean_activations = torch.zeros((n_positions, n_layers, d_model), dtype=torch.float64, device=model.device)
 
-    fwd_pre_hooks = [(block_modules[layer], get_mean_activations_pre_hook(layer=layer, cache=mean_activations, n_samples=n_samples, positions=positions)) for layer in range(n_layers)]
+    fwd_pre_hooks = [(block_modules[layer], get_mean_activations_pre_hook(layer=layer, cache=mean_activations, n_samples=n_samples, positions=positions))
+                     for layer in range(n_layers)]
 
     for i in tqdm(range(0, len(instructions), batch_size)):
         inputs = tokenize_instructions_fn(instructions=instructions[i:i+batch_size])
